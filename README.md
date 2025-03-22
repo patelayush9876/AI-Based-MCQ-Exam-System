@@ -56,7 +56,7 @@ Create a `.env` file in the root directory and configure:
 ```env
 OPENAI_API_KEY=your_api_key_here
 JWT_SECRET=your_secret_key
-DATABASE_URL=jdbc:mysql://localhost:3306/mcq_exam_system
+DATABASE_URL=jdbc:mysql://localhost:3306/quiz_app
 ```
 
 ## 📊 Project Workflow
@@ -72,12 +72,10 @@ We welcome contributions! 🚀
 - Implement your feature or fix an issue.
 - Open a pull request with detailed description.
 
-## 📜 License
-This project is licensed under the **MIT License**.
 
 ## 📩 Contact
 For queries, reach out to:
-- **Your Name**
+- **Your Name** Ayush Patel
 - **Email:** patelayush9876@gmail.com
 - **LinkedIn:** [Your Profile]([https://linkedin.com/in/your-profile](https://www.linkedin.com/in/ayush-patel-860793296/))
 
