@@ -55,3 +55,12 @@ export const submitQuiz = (quizData) => apiClient.post("/report/submit-quiz", qu
 export const getStudentReport = (studentUsername) => apiClient.get(`/report/${studentUsername}/studentreport`);
 export const fetchStudentReport = (studentId) =>
     apiClient.get(`/report/report?studentId=${studentId}`);
+
+export const generateQuiz = async (topic, numQuestions) => {
+    const response = await axios.get(`http://localhost:8080/api/quiz/generate`, {
+        params: { topic, numQuestions },
+        responseType: 'blob', 
+    });
+
+    return response.data;
+};
