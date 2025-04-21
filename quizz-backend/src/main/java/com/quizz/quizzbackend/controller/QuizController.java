@@ -1,10 +1,12 @@
 package com.quizz.quizzbackend.controller;
 
 import com.quizz.quizzbackend.dto.QuizAssignmentRequest;
+import com.quizz.quizzbackend.model.Question;
 import com.quizz.quizzbackend.model.Quiz;
 import com.quizz.quizzbackend.model.User;
 import com.quizz.quizzbackend.repo.QuizRepository;
 import com.quizz.quizzbackend.repo.UserRepository;
+import com.quizz.quizzbackend.service.QuestionGeneratorService;
 import com.quizz.quizzbackend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,10 @@ public class QuizController {
     private QuizService quizService;
     @Autowired
     private QuizRepository quizRepository;
+//    @Autowired
+//    private QuestionGeneratorService questionGeneratorService;
+    @Autowired
+    private QuestionGeneratorService cohereQuestionService;
 
     @PostMapping("/add-quiz")
     public ResponseEntity<String> uploadQuiz(
@@ -98,6 +104,12 @@ public class QuizController {
     @GetMapping("/quiz/{quizId}")
     public Quiz getQuizById(@PathVariable Long quizId) {
         return quizRepository.findById(quizId).get();
+    }
+
+    @PostMapping("/generatequiz")
+    public List<Question> generateQuiz(@RequestParam String syllabus, @RequestParam Long count) {
+        System.out.println("Generating Quiz................... : "+syllabus);
+        return cohereQuestionService.generateQuestions(syllabus, count);
     }
 
 }

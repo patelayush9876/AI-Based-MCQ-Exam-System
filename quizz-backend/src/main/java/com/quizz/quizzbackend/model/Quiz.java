@@ -27,6 +27,7 @@ public class Quiz {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Question> questions; // Ensure it is a List<Question>
 
+
     @ManyToOne
     private User faculty;
 

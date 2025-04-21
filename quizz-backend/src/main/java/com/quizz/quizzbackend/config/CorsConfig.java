@@ -14,9 +14,10 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Allow all endpoints
                         .allowedOrigins("http://localhost:5173") // Allow specific origin
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedMethods("*")
                         .allowedHeaders("*")
-                        .allowCredentials(true); // Allow cookies if needed
+                        .allowCredentials(false); // Allow cookies if needed
+
             }
         };
     }

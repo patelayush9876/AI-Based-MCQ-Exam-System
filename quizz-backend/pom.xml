@@ -78,6 +78,32 @@
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-validation</artifactId>-->
 <!--        </dependency>-->
+
+
+        <!-- Spring Boot Web Starter (for basic REST API) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Boot WebFlux (for reactive programming & WebClient) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <!-- Reactor Core (Provides Mono & Flux) -->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cohere</groupId>
+            <artifactId>cohere-java-sdk</artifactId>
+            <version>1.0.0</version> <!-- Replace with the latest version -->
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -90,3 +116,9 @@
     </build>
 
 </project>
+
+
+<!-- Spring Boot Web Starter -->
+
+
+
