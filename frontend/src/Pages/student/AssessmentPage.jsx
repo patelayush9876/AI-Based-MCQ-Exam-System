@@ -95,8 +95,8 @@ const AssessmentPage = () => {
         {/* Header */}
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-4">Assessment Page</h1>
         <h2 className="text-xl font-semibold text-gray-700 text-center">{quiz.name}</h2>
-        <p className="text-gray-600 text-center">Duration: {quiz.duration} minutes</p>
-        <p className="text-red-600 text-center">Time Remaining: {minutes}m {seconds}s</p> {/* Display timer */}
+        {/* <p className="text-gray-600 text-center">Duration: {quiz.duration} minutes</p>
+        <p className="text-red-600 text-center">Time Remaining: {minutes}m {seconds}s</p> Display timer */}
 
         {!submitted ? (
           <form onSubmit={(e) => e.preventDefault()} className="mt-6">
