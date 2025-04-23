@@ -70,23 +70,51 @@ public class ReportService {
         }
         return studentReports;
     }
-    public List<FacultyReport> getFacultyReport(String facultyUsername){
-        Optional<User> user = userRepository.findByUsername(facultyUsername);
-        List<Quiz> quizzes = quizRepository.findByFaculty(user.get());
-        List<FacultyReport> facultyReports = new ArrayList<FacultyReport>();
-        for (Quiz r : quizzes){
-            Report report = reportRepository.findByQuizId(r.getId());
-            facultyReports.add(FacultyReport.builder()
-                    .quizId(report.getQuizId())
-                    .studentName(userRepository.findByUsername(report.getStudentUsername()).get().getName())
-                    .studentId(report.getStudentUsername())
-                    .total(report.getTotal())
-                    .obtained(report.getScore())
-                    .grade(calcGrade(report.getTotal(), report.getScore()))
-                    .build());
+    public List<FacultyReport> getFacultyReport(String facultyUsername) {
+        Optional<User> userOptional = userRepository.findByUsername(facultyUsername);
+        if (userOptional.isEmpty()) {
+            System.out.println("Faculty user not found for: " + facultyUsername);
+            return new ArrayList<>();
         }
+
+        User faculty = userOptional.get();
+        List<Quiz> quizzes = quizRepository.findByFaculty(faculty);
+
+        if (quizzes.isEmpty()) {
+            System.out.println("No quizzes found for faculty: " + facultyUsername);
+        }
+
+        List<FacultyReport> facultyReports = new ArrayList<>();
+
+        for (Quiz quiz : quizzes) {
+            List<Report> reports = reportRepository.findAllByQuizId(quiz.getId());
+
+            if (reports.isEmpty()) {
+                System.out.println("No reports found for quiz ID: " + quiz.getId());
+            }
+
+            for (Report report : reports) {
+                Optional<User> studentUserOpt = userRepository.findByUsername(report.getStudentUsername());
+                String studentName = studentUserOpt.map(User::getName).orElse("Unknown");
+
+                facultyReports.add(FacultyReport.builder()
+                        .quizId(report.getQuizId())
+                        .studentName(studentName)
+                        .studentId(report.getStudentUsername())
+                        .total(report.getTotal())
+                        .obtained(report.getScore())
+                        .grade(calcGrade(report.getTotal(), report.getScore()))
+                        .build());
+            }
+        }
+
+        System.out.println("Returning facultyReports size: " + facultyReports.size());
         return facultyReports;
     }
+
+
+
+
 
     private Character calcGrade(Integer total, Integer score) {
         double percentage = (score * 100.0) / total;

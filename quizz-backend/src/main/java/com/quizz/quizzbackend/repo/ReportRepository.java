@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Long> {
     List<Report> findByStudentUsername(String studentUsername);
-
-    Report findByQuizId(Long quizId);
+    List<Report> findAllByQuizId(Long quizId); // <-- Add this if missing
+    Report findByQuizId(Long quizId); // Optional: you can remove this if not needed anymore
 }
+
